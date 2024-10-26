@@ -1,0 +1,25 @@
+{
+  "llvm-target": "armv7-unknown-none-eabihf",
+  "metadata": {
+    "description": "armv7 rtems",
+    "host_tools": false,
+    "std": false,
+    "tier": 3
+  },
+  "target-pointer-width": "32",
+  "data-layout": "e-m:e-p:32:32-Fi8-i64:64-v128:64:128-a:0:32-n32-S64",
+  "arch": "arm",
+  "os": "rtems",
+  "target-family": ["unix"],
+  "abi": "eabihf",
+  "linker": "arm-rtems6-gcc",
+  "relocation-model": "static",
+  "panic-strategy": "abort",
+  "features": "+thumb2,+neon,+vfp3",
+  "max-atomic-width": 64,
+  "emit-debug-gdb-scripts": false,
+  "c-enum-min-bits": 8,
+  "eh-frame-header": false,
+  "no_default_libraries": false,
+  "env": "newlib"
+}

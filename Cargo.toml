@@ -1,0 +1,13 @@
+[package]
+name = "satellite-framework"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[lib]
+crate-type = ["staticlib"]
+
+[build-dependencies]
+pkg-config = "0.3"
+cc = "1.1"
