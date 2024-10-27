@@ -41,6 +41,9 @@ pub use crate::rtems::ratemon::*;
 pub mod semaphor;
 pub use crate::rtems::semaphor::*;
 
+pub mod barrier;
+pub use crate::rtems::barrier::*;
+
 pub mod io;
 pub use crate::rtems::io::*;
 
