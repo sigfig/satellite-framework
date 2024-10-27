@@ -15,6 +15,7 @@ pub mod ratemon;
 pub mod semaphor;
 pub mod barrier;
 pub mod message;
+pub mod event;
 pub mod io;
 pub mod error;
 
@@ -29,5 +30,6 @@ pub use crate::rtems::ratemon::*;
 pub use crate::rtems::semaphor::*;
 pub use crate::rtems::barrier::*;
 pub use crate::rtems::message::*;
+pub use crate::rtems::event::*;
 pub use crate::rtems::io::*;
 pub use crate::rtems::error::*;
