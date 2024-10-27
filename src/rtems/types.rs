@@ -19,7 +19,6 @@ pub type time_t = c_int;
 // someone else has probably figured out how to express it properly in rust
 pub type cpu_set_t = *mut c_void;
 
-
 #[repr(C)]
 pub struct timeval {
   tv_sec: time_t,

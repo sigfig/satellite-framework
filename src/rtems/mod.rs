@@ -4,53 +4,28 @@
 
 #![allow(non_camel_case_types)]
 
-use core::ffi::*;
-
-// TODO: rtems values and structs
-// these need to be given semantic mappings to their enum values and structs
-// however, we might want to abstract a little bit for the sake of rust apis
-// we should wait to see how the api shakes out before doing anything here
 pub mod types;
-pub use crate::rtems::types::*;
-
-////////////////////////////////////////////////////////////////////////////////
-// iniitialization manager
-
-extern "C" {
-  pub fn rtems_initialize_executive() -> ();
-}
-
+pub mod initialize;
 pub mod scheduler;
-pub use crate::rtems::scheduler::*;
-
 pub mod task;
-pub use crate::rtems::task::*;
-
 pub mod interrupt;
-pub use crate::rtems::interrupt::*;
-
 pub mod clock;
-pub use crate::rtems::clock::*;
-
 pub mod timer;
-pub use crate::rtems::timer::*;
-
 pub mod ratemon;
-pub use crate::rtems::ratemon::*;
-
 pub mod semaphor;
-pub use crate::rtems::semaphor::*;
-
 pub mod barrier;
-pub use crate::rtems::barrier::*;
-
 pub mod io;
+pub mod error;
+
+pub use crate::rtems::types::*;
+pub use crate::rtems::initialize::*;
+pub use crate::rtems::scheduler::*;
+pub use crate::rtems::task::*;
+pub use crate::rtems::interrupt::*;
+pub use crate::rtems::clock::*;
+pub use crate::rtems::timer::*;
+pub use crate::rtems::ratemon::*;
+pub use crate::rtems::semaphor::*;
+pub use crate::rtems::barrier::*;
 pub use crate::rtems::io::*;
-
-////////////////////////////////////////////////////////////////////////////////
-// error manager
-
-extern "C" {
-  pub fn rtems_panic(fmt: *const c_char, ...) -> !;
-  pub fn rtems_shutdown_executive(fatal_code: uint32_t);
-}
+pub use crate::rtems::error::*;
