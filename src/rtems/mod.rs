@@ -21,6 +21,7 @@ pub mod partition;
 pub mod region;
 pub mod port;
 pub mod io;
+pub mod cache;
 pub mod error;
 
 pub use crate::rtems::types::*;
@@ -40,4 +41,5 @@ pub use crate::rtems::partition::*;
 pub use crate::rtems::region::*;
 pub use crate::rtems::port::*;
 pub use crate::rtems::io::*;
+pub use crate::rtems::cache::*;
 pub use crate::rtems::error::*;
