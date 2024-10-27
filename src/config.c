@@ -2,8 +2,6 @@
 
 #include <rtems.h>
 
-#include <inttypes.h>
-
 /* configuration information */
 
 #include <bsp.h> /* for device driver prototypes */
