@@ -38,6 +38,9 @@ pub use crate::rtems::timer::*;
 pub mod ratemon;
 pub use crate::rtems::ratemon::*;
 
+pub mod semaphor;
+pub use crate::rtems::semaphor::*;
+
 pub mod io;
 pub use crate::rtems::io::*;
 
