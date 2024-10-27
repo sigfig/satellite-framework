@@ -14,6 +14,7 @@ pub type int64_t = c_longlong;
 pub type uint64_t = c_ulonglong;
 pub type size_t = c_uint;
 pub type time_t = c_int;
+pub type uintptr_t = c_uint;
 
 // cpu_set_t turns out to have a very complicated definition in libc
 // someone else has probably figured out how to express it properly in rust
