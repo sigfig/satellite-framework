@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 use crate::rtems::types::*;
-use crate::rtems::task::*;
+use core::ffi::*;
 
 #[repr(C)]
 pub struct rtems_message_queue_config {
