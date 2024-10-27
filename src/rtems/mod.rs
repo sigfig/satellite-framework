@@ -32,6 +32,9 @@ pub use crate::rtems::interrupt::*;
 pub mod clock;
 pub use crate::rtems::clock::*;
 
+pub mod timer;
+pub use crate::rtems::timer::*;
+
 pub mod io;
 pub use crate::rtems::io::*;
 

@@ -2,7 +2,6 @@
 // clock management
 
 use crate::rtems::types::*;
-use core::ffi::*;
 
 extern "C" {
   pub fn rtems_clock_set(
