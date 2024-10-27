@@ -35,6 +35,9 @@ pub use crate::rtems::clock::*;
 pub mod timer;
 pub use crate::rtems::timer::*;
 
+pub mod ratemon;
+pub use crate::rtems::ratemon::*;
+
 pub mod io;
 pub use crate::rtems::io::*;
 

@@ -63,6 +63,18 @@ pub type rtems_mode = uint32_t;
 pub type rtems_attribute = uint32_t;
 pub type rtems_option = uint32_t;
 
+pub type rtems_print_printer = unsafe extern "C" fn(
+  *mut c_void,
+  *const c_char,
+  ...
+) -> c_int;
+
+#[repr(C)]
+pub struct rtems_printer {
+  context: *mut c_void,
+  printer: rtems_print_printer
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // rtems datastructures
 
