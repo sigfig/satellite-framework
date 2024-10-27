@@ -23,7 +23,7 @@ extern "C" {
 
   pub fn rtems_barrier_wait(
     id: rtems_id,
-    timeout: interval
+    timeout: rtems_interval
   ) -> rtems_status_code;
 
   pub fn rtems_barrier_release(
