@@ -29,6 +29,7 @@ pub mod regulator;
 pub mod object;
 pub mod chain;
 pub mod rbtree;
+pub mod cbs;
 
 pub use crate::rtems::types::*;
 pub use crate::rtems::initialize::*;
@@ -55,3 +56,4 @@ pub use crate::rtems::regulator::*;
 pub use crate::rtems::object::*;
 pub use crate::rtems::chain::*;
 pub use crate::rtems::rbtree::*;
+pub use crate::rtems::cbs::*;
