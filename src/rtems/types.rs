@@ -76,35 +76,3 @@ pub struct rtems_printer {
   context: *mut c_void,
   printer: rtems_print_printer
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// rtems datastructures
-
-// this is a doubly-linked list structure used in rtems
-// it is sneakily generic
-// it is cast to a larger struct type that has chain_node as its first element
-// not sure how much it gets used in application code
-// rtems/cpukit/include/rtems/score/chain.h#78
-#[repr(C)]
-pub struct chain_node {
-  next: *mut chain_node,
-  previous: *mut chain_node
-}
-
-#[repr(C)]
-pub struct chain_head {
-  node: chain_node,
-  fill: *mut chain_node
-}
-
-#[repr(C)]
-pub struct chain_tail {
-  fill: *mut chain_node,
-  node: chain_node
-}
-
-#[repr(C)]
-pub union chain_control {
-  head: ManuallyDrop<chain_head>,
-  tail: ManuallyDrop<chain_tail>
-}
