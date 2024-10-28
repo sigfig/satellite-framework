@@ -56,28 +56,18 @@ fn empty_tod() -> rtems_time_of_day {
   }
 }
 
-fn print_name(name: rtems_name) -> () {
-  // TODO: this imaginary io scoping is bad
+fn print_tick(task: usize, name: rtems_name, time: rtems_time_of_day) -> () {
   let mut console = Console;
   let c1 = char::from_u32(name & 255).unwrap();
-  let c2 = char::from_u32(name & (255 << 8)).unwrap();
-  let c3 = char::from_u32(name & (255 << 16)).unwrap();
-  let c4 = char::from_u32(name & (255 << 24)).unwrap();
-  writeln!(console, "{}{}{}{}", c1, c2, c3, c4);
-}
-
-fn print_time(time: rtems_time_of_day) -> () {
-  let mut console = Console;
+  let c2 = char::from_u32((name & (255 << 8)) >> 8).unwrap();
+  let c3 = char::from_u32((name & (255 << 16)) >> 16).unwrap();
+  let c4 = char::from_u32((name & (255 << 24)) >> 24).unwrap();
   writeln!(
     console,
-    "{}/{}/{} {}:{}:{}.{}",
-    time.month,
-    time.day,
-    time.year,
-    time.hour,
-    time.minute,
-    time.second,
-    time.ticks
+    "[{}] tick {}{}{}{} at {}:{}:{}",
+    task,
+    c1, c2, c3, c4,
+    time.hour, time.minute, time.second
   );
 }
 
@@ -87,22 +77,27 @@ pub unsafe extern "C" fn ticker_task(arg: *mut c_void) -> () {
   let ticks = task_index * 5 * (rtems_clock_get_ticks_per_second() as usize);
   let mut console = Console;
 
+  writeln!(console, "[{}] task started", task_index);
+
   loop {
     let _ = rtems_clock_get_tod(&mut time);
 
     if time.second >= 35 {
-      writeln!(console, "*** end of clock test ***");
-      return;
+      writeln!(console, "[{}] timer elapsed", task_index);
+      rtems_task_delete(RTEMS_SELF);
     }
 
-    print_name(task_names[task_index]);
-    print_time(time);
+    print_tick(task_index, task_names[task_index], time);
     let _  = rtems_task_wake_after(ticks.try_into().unwrap());
   }
 }
 
 fn ticker_main() -> Result<(), Error> {
   unsafe {
+    let mut console = Console;
+
+    writeln!(console, "[ ] starting ticker example");
+
     let mut time = empty_tod();
 
     time.year = 1988;
@@ -115,30 +110,34 @@ fn ticker_main() -> Result<(), Error> {
 
     let _ = rtems_clock_set(&time);
 
+    writeln!(console, "[ ] clock configured");
+
     task_names[1] = rtems_build_name(
-      't' as c_char,
-      '1' as c_char,
       ' ' as c_char,
-      ' ' as c_char
+      ' ' as c_char,
+      '1' as c_char,
+      't' as c_char
     );
 
     task_names[2] = rtems_build_name(
-      't' as c_char,
-      '2' as c_char,
       ' ' as c_char,
-      ' ' as c_char
+      ' ' as c_char,
+      '2' as c_char,
+      't' as c_char
     );
 
     task_names[3] = rtems_build_name(
-      't' as c_char,
-      '3' as c_char,
       ' ' as c_char,
-      ' ' as c_char
+      ' ' as c_char,
+      '3' as c_char,
+      't' as c_char
     );
 
     let mut _arg1 = 1;
     let mut _arg2 = 2;
     let mut _arg3 = 3;
+
+    writeln!(console, "[ ] name objects initialized");
 
     let _ = rtems_task_create(
       task_names[1],
@@ -167,6 +166,8 @@ fn ticker_main() -> Result<(), Error> {
       &mut task_ids[3]
     );
 
+    writeln!(console, "[ ] task objects initialized");
+
     // NOTE:
     // task closures are fn(*mut c_void) -> ()
     let _ = rtems_task_start(
@@ -175,17 +176,23 @@ fn ticker_main() -> Result<(), Error> {
       &mut _arg1 as *mut _ as *mut c_void
     );
 
+    writeln!(console, "[ ] task 1 started");
+
     let _ = rtems_task_start(
       task_ids[2],
       ticker_task,
       &mut _arg2 as *mut _ as *mut c_void
     );
 
+    writeln!(console, "[ ] task 2 started");
+
     let _ = rtems_task_start(
       task_ids[3],
       ticker_task,
-      &mut _arg2 as *mut _ as *mut c_void
+      &mut _arg3 as *mut _ as *mut c_void
     );
+
+    writeln!(console, "[ ] task 3 started");
 
     let _ = rtems_task_delete(RTEMS_SELF);
   }
