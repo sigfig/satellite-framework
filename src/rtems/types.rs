@@ -50,14 +50,15 @@ pub type rtems_id = uint32_t;
 pub type rtems_interval = uint32_t;
 
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct rtems_time_of_day {
-  year: uint32_t,
-  month: uint32_t,
-  day: uint32_t,
-  hour: uint32_t,
-  minute: uint32_t,
-  second: uint32_t,
-  ticks: uint32_t
+  pub year: uint32_t,
+  pub month: uint32_t,
+  pub day: uint32_t,
+  pub hour: uint32_t,
+  pub minute: uint32_t,
+  pub second: uint32_t,
+  pub ticks: uint32_t
 }
 
 pub type rtems_mode = uint32_t;
