@@ -25,6 +25,7 @@ pub mod cache;
 pub mod error;
 pub mod extension;
 pub mod thread;
+pub mod regulator;
 
 pub use crate::rtems::types::*;
 pub use crate::rtems::initialize::*;
@@ -47,3 +48,4 @@ pub use crate::rtems::cache::*;
 pub use crate::rtems::error::*;
 pub use crate::rtems::extension::*;
 pub use crate::rtems::thread::*;
+pub use crate::rtems::regulator::*;
