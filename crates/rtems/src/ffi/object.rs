@@ -2,8 +2,8 @@
 // object and id bookkeeping
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
-use crate::rtems::chain::*;
+use crate::types::*;
+use crate::chain::*;
 use core::ffi::*;
 
 #[repr(C)]

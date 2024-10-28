@@ -2,7 +2,7 @@
 // constant-bandwidth scheduler interface
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
+use crate::types::*;
 use core::ffi::*;
 
 

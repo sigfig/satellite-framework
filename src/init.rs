@@ -2,7 +2,7 @@
 // temporary executable entry point for testing
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::*;
+use rtems::*;
 use crate::io::*;
 
 use core::primitive::char;

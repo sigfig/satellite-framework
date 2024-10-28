@@ -1,33 +1,37 @@
 ////////////////////////////////////////////////////////////////////////////////
-// barrier synchronization
+// dual-port memory address translation
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
+use crate::types::*;
+use core::ffi::*;
 
 extern "C" {
-  pub fn rtems_barrier_create(
+  pub fn rtems_port_create(
     name: rtems_name,
-    attribute_set: rtems_attribute,
-    maximum_waiters: uint32_t,
+    internal_start: *mut c_void,
+    external_start: *mut c_void,
+    length: uint32_t,
     id: *mut rtems_id
   ) -> rtems_status_code;
 
-  pub fn rtems_barrier_ident(
+  pub fn rtems_port_ident(
     name: rtems_name,
     id: *mut rtems_id
   ) -> rtems_status_code;
 
-  pub fn rtems_barrier_delete(
+  pub fn rtems_port_delete(
     id: rtems_id
   ) -> rtems_status_code;
 
-  pub fn rtems_barrier_wait(
+  pub fn rtems_port_external_to_internal(
     id: rtems_id,
-    timeout: rtems_interval
+    external: *mut c_void,
+    internal: *mut *mut c_void
   ) -> rtems_status_code;
 
-  pub fn rtems_barrier_release(
+  pub fn rtems_port_internal_to_external(
     id: rtems_id,
-    released: *mut uint32_t
+    external: *mut c_void,
+    internal: *mut *mut c_void
   ) -> rtems_status_code;
 }

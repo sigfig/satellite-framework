@@ -2,7 +2,7 @@
 // anchored doubly-linked list
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
+use crate::types::*;
 use core::ffi::*;
 use core::mem::ManuallyDrop;
 

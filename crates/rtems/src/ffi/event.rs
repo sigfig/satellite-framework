@@ -2,7 +2,7 @@
 // task event set management
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
+use crate::types::*;
 
 pub type rtems_event_set = uint32_t;
 

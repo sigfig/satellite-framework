@@ -2,7 +2,7 @@
 // asynchronous task signaling
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
+use crate::types::*;
 
 pub type rtems_signal_set = uint32_t;
 

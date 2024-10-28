@@ -2,7 +2,7 @@
 // task scheduling and management
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
+use crate::types::*;
 use core::ffi::*;
 
 // TODO: this struct is fairly complicated

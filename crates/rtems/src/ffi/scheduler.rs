@@ -2,8 +2,8 @@
 // scheduler
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
-use crate::rtems::task::*;
+use crate::types::*;
+use crate::task::*;
 
 extern "C" {
   pub fn rtems_scheduler_ident(

@@ -2,9 +2,9 @@
 // kernel extension support
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
-use crate::rtems::error::*;
-use crate::rtems::thread::*;
+use crate::types::*;
+use crate::error::*;
+use crate::thread::*;
 
 // TODO:
 // i expect there are going to be some problems with handling driver function

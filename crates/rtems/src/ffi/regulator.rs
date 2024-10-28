@@ -2,9 +2,9 @@
 // stream burst regulation support
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
-use crate::rtems::task::*;
-use crate::rtems::ratemon::*;
+use crate::types::*;
+use crate::task::*;
+use crate::ratemon::*;
 use core::ffi::*;
 
 pub type rtems_regulator_deliverer = unsafe extern "C" fn(

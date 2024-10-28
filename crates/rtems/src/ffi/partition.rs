@@ -1,37 +1,37 @@
 ////////////////////////////////////////////////////////////////////////////////
-// dual-port memory address translation
+// memory partitions
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
+use crate::types::*;
 use core::ffi::*;
 
 extern "C" {
-  pub fn rtems_port_create(
+  pub fn rtems_partition_create(
     name: rtems_name,
-    internal_start: *mut c_void,
-    external_start: *mut c_void,
-    length: uint32_t,
+    starting_address: *mut c_void,
+    length: uintptr_t,
+    buffer_size: size_t,
+    attribute_set: rtems_attribute,
     id: *mut rtems_id
   ) -> rtems_status_code;
 
-  pub fn rtems_port_ident(
+  pub fn rtems_partition_ident(
     name: rtems_name,
+    node: uint32_t,
     id: *mut rtems_id
   ) -> rtems_status_code;
 
-  pub fn rtems_port_delete(
+  pub fn rtems_partition_delete(
     id: rtems_id
   ) -> rtems_status_code;
 
-  pub fn rtems_port_external_to_internal(
+  pub fn rtems_partition_get_buffer(
     id: rtems_id,
-    external: *mut c_void,
-    internal: *mut *mut c_void
+    buffer: *mut *mut c_void
   ) -> rtems_status_code;
 
-  pub fn rtems_port_internal_to_external(
+  pub fn rtems_partition_return_buffer(
     id: rtems_id,
-    external: *mut c_void,
-    internal: *mut *mut c_void
+    buffer: *mut c_void
   ) -> rtems_status_code;
 }

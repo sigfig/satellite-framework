@@ -2,7 +2,7 @@
 // cpu cache management
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
+use crate::types::*;
 use core::ffi::*;
 
 extern "C" {

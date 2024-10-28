@@ -2,7 +2,7 @@
 // io driver management and character device access
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
+use crate::types::*;
 use core::ffi::*;
 
 pub type rtems_device_major_number = uint32_t;

@@ -1,37 +1,33 @@
 ////////////////////////////////////////////////////////////////////////////////
-// memory partitions
+// barrier synchronization
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
-use core::ffi::*;
+use crate::types::*;
 
 extern "C" {
-  pub fn rtems_partition_create(
+  pub fn rtems_barrier_create(
     name: rtems_name,
-    starting_address: *mut c_void,
-    length: uintptr_t,
-    buffer_size: size_t,
     attribute_set: rtems_attribute,
+    maximum_waiters: uint32_t,
     id: *mut rtems_id
   ) -> rtems_status_code;
 
-  pub fn rtems_partition_ident(
+  pub fn rtems_barrier_ident(
     name: rtems_name,
-    node: uint32_t,
     id: *mut rtems_id
   ) -> rtems_status_code;
 
-  pub fn rtems_partition_delete(
+  pub fn rtems_barrier_delete(
     id: rtems_id
   ) -> rtems_status_code;
 
-  pub fn rtems_partition_get_buffer(
+  pub fn rtems_barrier_wait(
     id: rtems_id,
-    buffer: *mut *mut c_void
+    timeout: rtems_interval
   ) -> rtems_status_code;
 
-  pub fn rtems_partition_return_buffer(
+  pub fn rtems_barrier_release(
     id: rtems_id,
-    buffer: *mut c_void
+    released: *mut uint32_t
   ) -> rtems_status_code;
 }

@@ -1,4 +1,4 @@
-use crate::rtems::*;
+use rtems::*;
 
 use core::ffi::c_char;
 

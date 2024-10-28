@@ -2,8 +2,8 @@
 // timer management
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
-use crate::rtems::task::*;
+use crate::types::*;
+use crate::task::*;
 use core::ffi::*;
 
 pub type rtems_timer_service_routine_entry = unsafe extern "C" fn(

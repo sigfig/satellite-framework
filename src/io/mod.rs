@@ -1,4 +1,4 @@
-use crate::rtems::*;
+use rtems::*;
 
 pub struct Console;
 

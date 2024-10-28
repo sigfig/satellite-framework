@@ -2,7 +2,7 @@
 // message queue interface
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
+use crate::types::*;
 use core::ffi::*;
 
 #[repr(C)]

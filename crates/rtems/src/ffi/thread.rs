@@ -2,7 +2,7 @@
 // thread api plus synchronization primitives
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
+use crate::types::*;
 use core::ffi::*;
 
 // NOTE:

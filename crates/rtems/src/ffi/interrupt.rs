@@ -2,9 +2,9 @@
 // interrupt handling
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
-use crate::rtems::task::*;
-use crate::rtems::chain::*;
+use crate::types::*;
+use crate::task::*;
+use crate::chain::*;
 use core::ffi::*;
 
 pub type rtems_isr_entry = unsafe extern "C" fn(uint32_t) -> ();

@@ -2,7 +2,7 @@
 // monotonic timer management
 ////////////////////////////////////////////////////////////////////////////////
 
-use crate::rtems::types::*;
+use crate::types::*;
 
 // enum
 // rtems/cpukit/include/rtems/rtems/ratemon.h#91
