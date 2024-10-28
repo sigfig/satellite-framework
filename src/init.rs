@@ -31,7 +31,7 @@ fn rust_main() -> Result<(), Error> {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// ticker example using unsafe api
+// ported ticker example using unsafe api
 
 use core::ffi::*;
 

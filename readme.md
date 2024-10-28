@@ -1,14 +1,16 @@
 # untitled satellite framework
 
-builds on top of rtems
+builds on top of rtems. this project is very much a work in progress.
 
 ## overview
 
 ```
 - armv7-rtems-eabihf.json         | hardware target specification
+- crates                          |
+  - rtems                         | rtems classic api bindings
+    - ffi                         | unsafe bindings
 - src                             |
   - io                            | convenience abstraction for kernel io
-  - rtems                         | rtems api bindings
   - config.c                      | rtems kernel configuration
   - init.rs                       | application entry point
   - panic.rs                      | crashpad handler
