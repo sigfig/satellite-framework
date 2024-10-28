@@ -8,6 +8,8 @@ use core::mem::ManuallyDrop;
 ////////////////////////////////////////////////////////////////////////////////
 // c standard typedefs
 
+pub type int16_t = c_short;
+pub type uint16_t = c_ushort;
 pub type int32_t = c_long;
 pub type uint32_t = c_ulong;
 pub type int64_t = c_longlong;
