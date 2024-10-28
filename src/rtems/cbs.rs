@@ -5,9 +5,18 @@
 use crate::rtems::types::*;
 use core::ffi::*;
 
-pub type rtems_cbs_parameters;
-pub type rtems_cbs_budget_overrun;
-pub type rtems_cbs_server_id;
+
+pub type rtems_cbs_server_id = uint32_t;
+
+#[repr(C)]
+pub struct rtems_cbs_parameters {
+  deadline: time_t,
+  budger: time_t
+}
+
+pub type rtems_cbs_budget_overrun = unsafe extern "C" fn(
+  rtems_cbs_server_id
+) -> ();
 
 extern "C" {
   pub fn rtems_cbs_initialize() -> c_int;

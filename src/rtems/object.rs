@@ -3,9 +3,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 use crate::rtems::types::*;
+use crate::rtems::chain::*;
 use core::ffi::*;
 
-pub type rtems_object_api_class_information;
+#[repr(C)]
+pub struct rtems_object_control {
+  node: rtems_chain_node,
+  id: rtems_id,
+  name: rtems_name
+}
+
+#[repr(C)]
+pub struct rtems_object_api_class_information {
+  minimum_id: rtems_id,
+  maximum_id: rtems_id,
+  maximum: uint32_t,
+  auto_extend: bool,
+  unallocated: uint32_t
+}
 
 extern "C" {
   pub fn rtems_build_id(
@@ -73,7 +88,7 @@ extern "C" {
   pub fn rtems_object_get_api_class_name(
     the_api: c_int,
     the_class: c_int
-  ) -> *const char;
+  ) -> *const c_char;
 
   pub fn rtems_object_get_class_information(
     the_api: c_int,

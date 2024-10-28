@@ -5,6 +5,18 @@
 use crate::rtems::types::*;
 use core::ffi::*;
 
+// TODO:
+// this exception frame struct is arch-specific
+// i've documented the one for arm here but not implemented it
+// this is likely to require some thought to get working
+
+// equivalent to CPU_Exception_frame for arm
+// rtems/cpukit/score/cpu/arm/include/rtems/score/cpu.h#640
+#[repr(C)]
+pub struct rtems_exception_frame {
+  placeholder: uint32_t
+}
+
 // enum
 // rtems/cpukit/include/rtems/score/interr.h#63
 pub type rtems_fatal_source = uint32_t;

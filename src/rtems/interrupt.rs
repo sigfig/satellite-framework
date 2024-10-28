@@ -4,6 +4,7 @@
 
 use crate::rtems::types::*;
 use crate::rtems::task::*;
+use crate::rtems::chain::*;
 use core::ffi::*;
 
 pub type rtems_isr_entry = unsafe extern "C" fn(uint32_t) -> ();
@@ -83,11 +84,11 @@ pub struct rtems_interrupt_server_config {
 #[repr(C)]
 pub struct rtems_interrupt_server_control {
   lock: rtems_interrupt_lock,
-  entries: chain_control,
+  entries: rtems_chain_control,
   server: rtems_id,
   errors: uint32_t,
   index: uint32_t,
-  node: chain_node,
+  node: rtems_chain_node,
   destroy: unsafe extern "C" fn(*mut rtems_interrupt_server_control) -> ()
 }
 
@@ -100,7 +101,7 @@ pub struct rtems_interrupt_server_action {
 
 #[repr(C)]
 pub struct rtems_interrupt_server_entry {
-  node: chain_node,
+  node: rtems_chain_node,
   server: *mut rtems_interrupt_server_control,
   vector: rtems_vector_number,
   actions: *mut rtems_interrupt_server_action

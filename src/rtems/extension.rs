@@ -4,7 +4,7 @@
 
 use crate::rtems::types::*;
 use crate::rtems::error::*;
-use core::ffi::*;
+use crate::rtems::thread::*;
 
 // TODO:
 // i expect there are going to be some problems with handling driver function

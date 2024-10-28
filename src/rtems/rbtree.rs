@@ -5,10 +5,24 @@
 use crate::rtems::types::*;
 use core::ffi::*;
 
-pub type rtems_rbtree_node;
-pub type rtems_rbtree_control;
-pub type rtems_rbtree_compare;
-pub type rtems_rbtree_compare_result;
+#[repr(C)]
+pub struct rtems_rbtree_node {
+  left: *mut rtems_rbtree_node,
+  right: *mut rtems_rbtree_node,
+  parent: *mut rtems_rbtree_node
+}
+
+#[repr(C)]
+pub struct rtems_rbtree_control {
+  root: *mut rtems_rbtree_node
+}
+
+pub type rtems_rbtree_compare_result = c_long;
+
+pub type rtems_rbtree_compare = unsafe extern "C" fn(
+  *const rtems_rbtree_node,
+  *const rtems_rbtree_node
+) -> rtems_rbtree_compare_result;
 
 extern "C" {
   pub fn rtems_rbtree_initialize(

@@ -4,6 +4,7 @@
 
 use crate::rtems::types::*;
 use core::ffi::*;
+use core::mem::ManuallyDrop;
 
 // this is a doubly-linked list structure used in rtems
 // it is sneakily generic
@@ -12,20 +13,20 @@ use core::ffi::*;
 // rtems/cpukit/include/rtems/score/chain.h#78
 #[repr(C)]
 pub struct rtems_chain_node {
-  next: *mut chain_node,
-  previous: *mut chain_node
+  next: *mut rtems_chain_node,
+  previous: *mut rtems_chain_node
 }
 
 #[repr(C)]
 pub struct chain_head {
-  node: chain_node,
-  fill: *mut chain_node
+  node: rtems_chain_node,
+  fill: *mut rtems_chain_node
 }
 
 #[repr(C)]
 pub struct chain_tail {
-  fill: *mut chain_node,
-  node: chain_node
+  fill: *mut rtems_chain_node,
+  node: rtems_chain_node
 }
 
 #[repr(C)]
