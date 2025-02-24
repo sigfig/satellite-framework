@@ -1,7 +1,8 @@
 {
-  "llvm-target": "armv7-unknown-none-eabihf",
+  "llvm-target": "thumbv7em-none-eabihf",
+  "llvm-floatabi": "hard",
   "metadata": {
-    "description": "armv7 rtems",
+    "description": "rtems toolchain for stm32f4 cortex m4",
     "host_tools": false,
     "std": false,
     "tier": 3
@@ -15,11 +16,10 @@
   "linker": "arm-rtems6-gcc",
   "relocation-model": "static",
   "panic-strategy": "abort",
-  "features": "+thumb2,+neon,+vfp3",
+  "features": "+vfp4d16sp",
   "max-atomic-width": 64,
   "emit-debug-gdb-scripts": false,
   "c-enum-min-bits": 8,
   "eh-frame-header": false,
-  "no_default_libraries": false,
   "env": "newlib"
 }

@@ -7,7 +7,7 @@ fn main() {
 
   // get rtems platform information from target pkgconf files
 
-  let target = "arm-rtems6-xilinx_zynq_a9_qemu";
+  let target = "arm-rtems6-stm32f4";
 
   let arch = pkg_config::get_variable(target, "RTEMS_ARCH").unwrap();
   let version = pkg_config::get_variable(target, "RTEMS_MAJOR").unwrap();
